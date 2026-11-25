@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace VirtualLife.Core
 {
     /// <summary>
@@ -21,6 +23,7 @@ namespace VirtualLife.Core
             loader.LoadStarted += binder.OnLoadStarted;
             loader.LoadCompleted += binder.OnLoadCompleted;
             loader.LoadFailed += binder.OnLoadFailed;
+            state.StateChanged += binder.OnStateChanged;
         }
 
         private void OnLoadStarted(string scene)
@@ -32,6 +35,13 @@ namespace VirtualLife.Core
         {
             if (scene == catalog.MainMenu) state.TryTransition(GameState.MainMenu);
             else if (scene == catalog.CommunityOne) state.TryTransition(GameState.Playing);
+        }
+
+        // Pausing freezes time; leaving Paused (resume OR back to menu) always restores it.
+        private void OnStateChanged(GameState previous, GameState next)
+        {
+            if (next == GameState.Paused) Time.timeScale = 0f;
+            else if (previous == GameState.Paused) Time.timeScale = 1f;
         }
 
         private void OnLoadFailed(string scene, string reason)

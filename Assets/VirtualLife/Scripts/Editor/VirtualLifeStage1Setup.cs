@@ -427,7 +427,7 @@ namespace VirtualLife.EditorTools
             return g;
         }
 
-        private static Canvas MakeCanvas()
+        internal static Canvas MakeCanvas()
         {
             var go = new GameObject("Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             var canvas = go.GetComponent<Canvas>();
@@ -440,7 +440,7 @@ namespace VirtualLife.EditorTools
             return canvas;
         }
 
-        private static void AddEventSystem(InputActionAsset asset)
+        internal static void AddEventSystem(InputActionAsset asset)
         {
             var go = new GameObject("EventSystem", typeof(EventSystem));
             var m = go.AddComponent<InputSystemUIInputModule>();
@@ -471,13 +471,13 @@ namespace VirtualLife.EditorTools
             return value != null || name.Contains("Middle") || name.Contains("Right") || name.Contains("Tracked");
         }
 
-        private static InputActionReference Ref(string key)
+        internal static InputActionReference Ref(string key)
         {
             return AssetDatabase.LoadAllAssetsAtPath(InputPath).OfType<InputActionReference>()
                 .FirstOrDefault(r => r.action != null && r.action.actionMap.name + "/" + r.action.name == key);
         }
 
-        private static DefaultControls.Resources Res()
+        internal static DefaultControls.Resources Res()
         {
             Sprite S(string n) => AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/" + n + ".psd");
             return new DefaultControls.Resources
@@ -489,7 +489,7 @@ namespace VirtualLife.EditorTools
 
         private static Font UiFont => Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
 
-        private static Text MakeText(Transform parent, string name, string text, int size, TextAnchor anchor, FontStyle style)
+        internal static Text MakeText(Transform parent, string name, string text, int size, TextAnchor anchor, FontStyle style)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(Text));
             go.transform.SetParent(parent, false);
@@ -499,7 +499,7 @@ namespace VirtualLife.EditorTools
             return t;
         }
 
-        private static Image MakeImage(Transform parent, string name, Color c)
+        internal static Image MakeImage(Transform parent, string name, Color c)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(Image));
             go.transform.SetParent(parent, false);
@@ -507,7 +507,7 @@ namespace VirtualLife.EditorTools
             return i;
         }
 
-        private static Button MakeButton(Transform parent, DefaultControls.Resources res, string label)
+        internal static Button MakeButton(Transform parent, DefaultControls.Resources res, string label)
         {
             GameObject go = DefaultControls.CreateButton(res);
             go.name = label + "_Button";
@@ -524,19 +524,19 @@ namespace VirtualLife.EditorTools
             return btn;
         }
 
-        private static void Row(Transform parent, GameObject go, float height)
+        internal static void Row(Transform parent, GameObject go, float height)
         {
             go.transform.SetParent(parent, false);
             var le = go.GetComponent<LayoutElement>() ?? go.AddComponent<LayoutElement>();
             le.preferredHeight = height; le.minHeight = height;
         }
 
-        private static void Anchor(RectTransform rt, Vector2 min, Vector2 max, Vector2 offMin, Vector2 offMax)
+        internal static void Anchor(RectTransform rt, Vector2 min, Vector2 max, Vector2 offMin, Vector2 offMax)
         {
             rt.anchorMin = min; rt.anchorMax = max; rt.offsetMin = offMin; rt.offsetMax = offMax;
         }
 
-        private static void SetRef(Object target, string field, Object value)
+        internal static void SetRef(Object target, string field, Object value)
         {
             var so = new SerializedObject(target);
             SerializedProperty p = so.FindProperty(field);
@@ -545,7 +545,7 @@ namespace VirtualLife.EditorTools
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 
-        private static void SetArray(Object target, string field, Object[] values)
+        internal static void SetArray(Object target, string field, Object[] values)
         {
             var so = new SerializedObject(target);
             SerializedProperty p = so.FindProperty(field);
