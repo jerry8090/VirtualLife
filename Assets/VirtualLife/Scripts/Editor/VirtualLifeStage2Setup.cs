@@ -110,8 +110,8 @@ namespace VirtualLife.EditorTools
 
             Link(idle, walk, AnimatorConditionMode.Greater, 0.1f, "Speed");
             Link(walk, idle, AnimatorConditionMode.Less, 0.1f, "Speed");
-            Link(walk, run, AnimatorConditionMode.Greater, 4.75f, "Speed");
-            Link(run, walk, AnimatorConditionMode.Less, 4.75f, "Speed");
+            Link(walk, run, AnimatorConditionMode.Greater, 0.75f, "Speed");
+            Link(run, walk, AnimatorConditionMode.Less, 0.75f, "Speed");
 
             AnimatorStateTransition anyJump = sm.AddAnyStateTransition(jump);
             anyJump.hasExitTime = false; anyJump.duration = 0.05f; anyJump.canTransitionToSelf = false;
@@ -214,10 +214,10 @@ namespace VirtualLife.EditorTools
         private static void SetupCommunityScene(InputActionAsset input, CameraConfig cameraCfg, PlayerController prefab)
         {
             var scene = EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
-            if (Object.FindFirstObjectByType<PlayerSpawnManager>() != null)
+            if (Object.FindAnyObjectByType<PlayerSpawnManager>() != null)
             { Debug.Log("[Setup2] CommunityOne already has a PlayerSpawnManager; scene left untouched."); return; }
 
-            var spawn = Object.FindFirstObjectByType<SpawnPoint>();
+            var spawn = Object.FindAnyObjectByType<SpawnPoint>();
             if (spawn == null)
             {
                 var g = new GameObject("SpawnPoint_Default");
@@ -245,7 +245,7 @@ namespace VirtualLife.EditorTools
 
             BuildBoundary();
 
-            if (Object.FindFirstObjectByType<EventSystem>() == null) S1.AddEventSystem(input);
+            if (Object.FindAnyObjectByType<EventSystem>() == null) S1.AddEventSystem(input);
 
             MobileControlsUI mobile = BuildMobileControls();
             BuildPauseMenu();

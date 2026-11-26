@@ -79,7 +79,7 @@ namespace VirtualLife.EditorTools
                 }
             }
 
-            EventSystem[] systems = Object.FindObjectsByType<EventSystem>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            EventSystem[] systems = Object.FindObjectsByType<EventSystem>(FindObjectsInactive.Include);
             sb.AppendLine($"{(systems.Length == 1 ? "PASS" : "WARN")}  EventSystems in open scenes: {systems.Length} (expected 1)");
             foreach (EventSystem es in systems)
             {
@@ -90,7 +90,7 @@ namespace VirtualLife.EditorTools
                 sb.AppendLine($"{(m.point != null && m.leftClick != null ? "PASS" : "FAIL")}  Module Point/Click references assigned.");
             }
 
-            foreach (MobileControlsUI ui in Object.FindObjectsByType<MobileControlsUI>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            foreach (MobileControlsUI ui in Object.FindObjectsByType<MobileControlsUI>(FindObjectsInactive.Include))
             {
                 var so = new SerializedObject(ui);
                 sb.AppendLine($"{(so.FindProperty("joystick").objectReferenceValue != null ? "PASS" : "FAIL")}  MobileControlsUI.joystick assigned");
@@ -102,7 +102,7 @@ namespace VirtualLife.EditorTools
                     sb.AppendLine($"{(c.renderMode == RenderMode.ScreenSpaceOverlay || c.worldCamera != null ? "PASS" : "FAIL")}  Canvas render mode {c.renderMode}");
             }
 
-            int handlers = Object.FindObjectsByType<PlayerInputHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length;
+            int handlers = Object.FindObjectsByType<PlayerInputHandler>(FindObjectsInactive.Include).Length;
             sb.AppendLine($"INFO  PlayerInputHandler instances in open scenes: {handlers} (the player is spawned at runtime, so 0 is normal)");
             sb.AppendLine("NOTE  Real simultaneous multi-touch can only be confirmed on a physical Android device.");
             Debug.Log(sb.ToString());
