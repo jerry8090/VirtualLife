@@ -40,5 +40,7 @@ namespace VirtualLife.UI
         }
 
         private void OnDisable() => pointerId = NoPointer;
+
+        private void OnApplicationFocus(bool focused) { if (!focused) pointerId = NoPointer; }
     }
 }

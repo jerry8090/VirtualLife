@@ -191,8 +191,19 @@
                 },
                 {
                     "name": "",
-                    "id": "97ca7922-cc19-4f9e-9bc4-bce29971e43f",
-                    "path": "<Pointer>/position",
+                    "id": "8e133263-d161-4484-8b5a-a33c79b2f318",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecf3d3c8-d90a-4b2d-9c66-ea730a8e1b13",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -202,8 +213,30 @@
                 },
                 {
                     "name": "",
-                    "id": "d3df20ec-15e0-4347-a5bc-4eb0b3e728b4",
-                    "path": "<Pointer>/press",
+                    "id": "b250db51-8376-4482-bb07-54b8b813a5d6",
+                    "path": "<Pen>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d448f36-04f8-4be7-b817-5bf8c10ac192",
+                    "path": "<Touchscreen>/touch*/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fe811c27-2dc9-4b29-9b2c-6fd78ded9421",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -213,12 +246,23 @@
                 },
                 {
                     "name": "",
-                    "id": "8e133263-d161-4484-8b5a-a33c79b2f318",
-                    "path": "<Mouse>/scroll",
+                    "id": "ae3dd992-226f-42e2-b3f5-caaacd42f7d2",
+                    "path": "<Pen>/tip",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Scroll",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39de87b8-0339-4578-886b-60eb46c49285",
+                    "path": "<Touchscreen>/touch*/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

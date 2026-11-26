@@ -45,6 +45,9 @@ namespace VirtualLife.UI
 
         private void OnDisable() => Release();
 
+        // Releases a held Sprint if the app loses focus before touch-up arrives.
+        private void OnApplicationFocus(bool focused) { if (!focused) Release(); }
+
         private void Release()
         {
             if (pointerId == NoPointer) return;
