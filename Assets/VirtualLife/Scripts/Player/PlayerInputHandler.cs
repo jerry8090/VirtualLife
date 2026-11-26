@@ -31,7 +31,7 @@ namespace VirtualLife.Input
             set
             {
                 gameplayEnabled = value;
-                if (!value) { virtualLook = Vector2.zero; jumpPressTime = -1f; } // held move/sprint are kept so a still-held finger stays correct after resume
+                if (!value) { virtualMove = Vector2.zero; virtualLook = Vector2.zero; virtualSprint = false; jumpPressTime = -1f; }
             }
         }
 
@@ -95,9 +95,9 @@ namespace VirtualLife.Input
         }
 
         // ---- IVirtualInputSink ----
-        public void SetMove(Vector2 value) => virtualMove = value; // stored raw; Move getter gates on gameplayEnabled
+        public void SetMove(Vector2 value) => virtualMove = gameplayEnabled ? value : Vector2.zero;
         public void AddLook(Vector2 pixelDelta) { if (gameplayEnabled) virtualLook += pixelDelta; }
-        public void SetSprint(bool held) => virtualSprint = held; // stored raw; SprintHeld getter gates on gameplayEnabled
+        public void SetSprint(bool held) => virtualSprint = gameplayEnabled && held;
         public void PressJump() { if (gameplayEnabled) jumpPressTime = Time.time; }
         public void PressInteract() { if (gameplayEnabled) InteractPressed?.Invoke(); }
         public void PressPause() => PausePressed?.Invoke();

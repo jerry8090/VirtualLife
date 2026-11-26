@@ -40,9 +40,6 @@ namespace VirtualLife.UI
 
         private void OnDisable() => ResetStick();
 
-        // Touch-up can be lost when the app loses focus; never leave the player running.
-        private void OnApplicationFocus(bool focused) { if (!focused) ResetStick(); }
-
         private void UpdateStick(PointerEventData e)
         {
             if (background == null) return;

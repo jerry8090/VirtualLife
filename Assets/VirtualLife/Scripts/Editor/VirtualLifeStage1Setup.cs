@@ -103,12 +103,8 @@ namespace VirtualLife.EditorTools
             submit.AddBinding("<Gamepad>/buttonSouth");
             InputAction cancel = ui.AddAction("Cancel", InputActionType.Button, "<Keyboard>/escape");
             cancel.AddBinding("<Gamepad>/buttonEast");
-            InputAction point = ui.AddAction("Point", InputActionType.PassThrough, "<Mouse>/position", expectedControlLayout: "Vector2");
-            point.AddBinding("<Pen>/position");
-            point.AddBinding("<Touchscreen>/touch*/position"); // one binding per finger = independent UI pointers
-            InputAction click = ui.AddAction("Click", InputActionType.PassThrough, "<Mouse>/leftButton");
-            click.AddBinding("<Pen>/tip");
-            click.AddBinding("<Touchscreen>/touch*/press");
+            ui.AddAction("Point", InputActionType.PassThrough, "<Pointer>/position", expectedControlLayout: "Vector2");
+            ui.AddAction("Click", InputActionType.PassThrough, "<Pointer>/press");
             ui.AddAction("Scroll", InputActionType.PassThrough, "<Mouse>/scroll", expectedControlLayout: "Vector2");
 
             InputActionMap player = a.AddActionMap("Player");
